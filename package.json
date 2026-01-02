@@ -1,0 +1,32 @@
+{
+	"name": "shell-mode-mcp",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/rektide/shell-mode-mcp.git"
+	},
+	"keywords": [],
+	"author": "rektide de la faye",
+	"license": "MIT",
+	"type": "module",
+	"bugs": {
+		"url": "https://github.com/rektide/shell-mode-mcp/issues"
+	},
+	"homepage": "https://github.com/rektide/shell-mode-mcp#readme",
+	"module": "shell-mode-mcp.js",
+	"dependencies": {
+		"@modelcontextprotocol/sdk": "^1.25.1",
+		"@typescript/native-preview": "7.0.0-dev.20260102.1",
+		"gunshi": "^0.27.5",
+		"oxfmt": "^0.21.0",
+		"oxlint": "^1.36.0",
+		"tsdown": "0.19.0-beta.1",
+		"vitest": "^4.0.16",
+		"zod": "^4.3.4"
+	}
+}
