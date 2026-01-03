@@ -39,13 +39,13 @@ node src/cli.ts list --resources --sse "http://localhost:3000/mcp"
 node src/cli.ts list --prompts --stdio "python server.py"
 
 # Call a tool
-node src/cli.ts call --name "tool-name" --arg param=value --stdio "node server.js"
+node src/cli.ts tool --name "tool-name" --arg param=value --stdio "node server.js"
 
 # Read a resource
-node src/cli.ts read --uri "resource://path" --stdio "python server.py"
+node src/cli.ts resource --uri "resource://path" --stdio "python server.py"
 
 # Get a prompt with arguments
-node src/cli.ts get --name "prompt-name" --arg dept=engineering --stdio "node server.js"
+node src/cli.ts prompt --name "prompt-name" --arg dept=engineering --stdio "node server.js"
 ```
 
 ## Development Plan
@@ -64,24 +64,28 @@ node src/cli.ts get --name "prompt-name" --arg dept=engineering --stdio "node se
 ### Phase 2: CLI Framework
 
 - Initialize Gunshi CLI with command structure
-- Implement command groups with connection flags:
-  - `tools` - Tool operations (list, call)
-  - `resources` - Resource operations (list, read)
-  - `prompts` - Prompt operations (list, get)
-- Add `--stdio` flag for stdio transport (takes command string)
-- Add `--sse` flag for HTTP streaming transport (takes URL)
+- Implement commands with connection flags:
+  - `list` - List tools/resources/prompts
+  - `tool` - Call a tool
+  - `resource` - Read a resource
+  - `prompt` - Get a prompt
+- Add `--stdio` flag for stdio transport
+- Add `--sse` flag for HTTP streaming
 - Add global configuration options (verbose, quiet, config file)
 
 ### Phase 3: Transport Implementation
 
-- Implement `StdioClientTransport` wrapper
+- Implement `StdioClientTransport` wrapper (src/transports/stdio.ts)
   - Spawn server process with command/args
-  - Handle connection lifecycle
+  - Handle connection lifecycle with connect/close
   - Support configurable command arguments
-- Implement `StreamableHTTPClientTransport` wrapper
+- Implement `StreamableHTTPClientTransport` wrapper (src/transports/sse.ts)
   - Connect to HTTP endpoint
   - Handle session management
   - Support custom headers and auth
+- Update all commands to use transport layer
+  - Commands: list, tool, resource, prompt
+  - All commands now require --stdio or --sse flag
 
 ### Phase 4: MCP Client Operations
 
