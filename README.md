@@ -27,25 +27,25 @@ Every command connects to an MCP server. Use either `--stdio` (runs a command) o
 
 ```sh
 # List tools from a stdio server
-node src/cli.ts tools list --stdio "python server.py"
+node src/cli.ts list --stdio "python server.py"
 
 # List tools from an HTTP server
-node src/cli.ts tools list --sse "http://localhost:3000/mcp"
-
-# Call a tool
-node src/cli.ts tools call --name "tool-name" --arg param=value --stdio "node server.js"
+node src/cli.ts list --sse "http://localhost:3000/mcp"
 
 # List resources
-node src/cli.ts resources list --sse "http://localhost:3000/mcp"
-
-# Read a resource
-node src/cli.ts resources read --uri "resource://path" --stdio "python server.py"
+node src/cli.ts list --resources --sse "http://localhost:3000/mcp"
 
 # List prompts
-node src/cli.ts prompts list --sse "http://localhost:3000/mcp"
+node src/cli.ts list --prompts --stdio "python server.py"
+
+# Call a tool
+node src/cli.ts call --name "tool-name" --arg param=value --stdio "node server.js"
+
+# Read a resource
+node src/cli.ts read --uri "resource://path" --stdio "python server.py"
 
 # Get a prompt with arguments
-node src/cli.ts prompts get --name "prompt-name" --arg dept=engineering --stdio "node server.js"
+node src/cli.ts get --name "prompt-name" --arg dept=engineering --stdio "node server.js"
 ```
 
 ## Development Plan
