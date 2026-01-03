@@ -34,6 +34,10 @@ await cli(process.argv.slice(2), async () => {
 			type: "string",
 			description: "Path to config file",
 		},
+		format: {
+			type: "string",
+			description: "Output format (json or pretty)",
+		},
 	},
 	subCommands: {
 		list: listCommand,
